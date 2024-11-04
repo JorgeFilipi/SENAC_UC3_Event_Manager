@@ -17,8 +17,9 @@ event_manager/
 │   ├── __init__.py
 │   ├── admin.py
 │   ├── apps.py
-│   ├── models.py
-│   ├── views.py
 │   ├── forms.py
-│   └── urls.py
+│   ├── models.py
+│   ├── tests.py
+│   ├── urls.py
+│   └── views.py
 └── manage.py
