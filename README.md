@@ -2,38 +2,38 @@
 
 ## Sobre o projeto:
 
-Este projeto é um exercício de Python com Django proposto na terceira cadeira do curso de Python do SENAC. Nesta fase do exercício, foram solicitadas as seguintes atribuições:
+Este projeto é um exercício de Python com Django proposto na terceira cadeira do curso de Python do SENAC.
 
-### Fase 1: Estrutura Básica do Projeto
+## Estrutura do Projeto
+```bash
 
-**Objetivo:**
+event_manager/
+├── event_manager/
+│   ├── __init__.py
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+├── events/
+│   ├── migrations/
+│   │   └── __init__.py
+│   ├── templates/
+│   │   ├── events/
+│   │   │   ├── event_add.html
+│   │   │   ├── event_detail.html
+│   │   │   └── event_list.html
+│   │   ├── base.html
+│   │   └── index.html
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── forms.py
+│   ├── models.py
+│   ├── tests.py
+│   ├── urls.py
+│   └── views.py
+└── manage.py
 
-- Criar o esqueleto inicial do projeto.
-- Configurar o ambiente e definir o modelo básico.
-
-**Tarefas:**
-
-1. **Configuração do Projeto Django:**
-
-   - Criar um novo projeto Django com o nome `event_manager`.
-   - Criar o primeiro app chamado `events`.
-   - Configurar o banco de dados e definir as configurações no `settings.py`.
-
-2. **Modelo de Evento:**
-
-   - Definir o modelo de evento no app `events`. O modelo deve incluir os seguintes campos:
-   - Nome do evento.
-   - Data de início e fim.
-   - Descrição.
-   - Local (endereço do evento).
-
-3. **Admin:**
-
-   - Registrar o modelo de evento no Django Admin para permitir o gerenciamento inicial dos eventos pela interface administrativa.
-
-**Resultado Esperado:**
-- Um sistema básico que permite a criação, edição e visualização de eventos via Django Admin.
-
+```
 
 ## 📫 Contato:
 - **E-mail:** [jorgefelipe1986](mailto:jorgefelipe1986@gmail.com)
