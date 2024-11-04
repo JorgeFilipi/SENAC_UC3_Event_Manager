@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Evento{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Detalhes do eventos: {{ event.name }}</h1>
+
+
+<table class="table">
+    <tr>
+        <th scope="col">Evento</th>
+        <th scope="col">Inicio</th>
+        <th scope="col">Final</th>
+        <th scope="col">Local</th>
+    </tr>
+    <tbody>
+    <td>{{ event.name }}</td>
+    <td>{{ event.start_date|date:"d/m/Y - H:i" }}{{ event.start_time|time:"H:i" }}</td>
+    <td>{{ event.end_date|date:"d/m/Y - H:i" }}{{ event.end_time|time:"H:i" }}</td>
+    <td>{{ event.location }}</td>
+    </tbody>
+</table>
+<div style="display: flex; justify-content: center">{{ event.description }}</div>
+<a class="btn btn-info btn-lg" href="{% url 'event_list' %}">Voltar</a>
+{% endblock %}

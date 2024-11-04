@@ -4,13 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d19c9ec7-9c1e-4f11-8a2a-e0dd50586b66" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/events/static/events/css/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/events/templates/base.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/events/templates/event_list.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/events/templates/index.html" afterDir="false" />
+    <list default="true" id="d19c9ec7-9c1e-4f11-8a2a-e0dd50586b66" name="Changes" comment="eventos">
+      <change afterPath="$PROJECT_DIR$/events/forms.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/events/templates/events/event_add.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/events/templates/events/event_detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Event_manager.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Event_manager.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/events/templates/event_detail.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Event_manager/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Event_manager/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/events/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/events/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/events/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/events/static/events/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/Estrutura_do_programa" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/events/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/events/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/events/templates/event_list.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/events/templates/events/event_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/events/templates/events/event_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/events/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/events/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/events/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/events/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/events/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/events/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +58,7 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/jorge/copia_luis/Event_manager/events&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Projetos_Python/Event_manager&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -61,6 +72,7 @@
       <recent name="C:\Users\jorge\copia_luis\Event_manager\events" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Projetos_Python\Event_manager\events\templates\events" />
       <recent name="C:\Users\jorge\copia_luis\Event_manager\events\templates\events" />
       <recent name="C:\Users\jorge\copia_luis\Event_manager\events\templates" />
     </key>
@@ -110,11 +122,39 @@
       <workItem from="1730334771776" duration="2435000" />
       <workItem from="1730337236228" duration="353000" />
       <workItem from="1730495235816" duration="58000" />
-      <workItem from="1730510774892" duration="2400000" />
+      <workItem from="1730510774892" duration="4709000" />
+      <workItem from="1730519595132" duration="24000" />
+      <workItem from="1730519765044" duration="6000" />
+      <workItem from="1730582070296" duration="5000" />
+      <workItem from="1730593472455" duration="6978000" />
+      <workItem from="1730646632434" duration="2451000" />
+      <workItem from="1730676789432" duration="8929000" />
+      <workItem from="1730692042517" duration="1555000" />
     </task>
+    <task id="LOCAL-00001" summary="eventos">
+      <option name="closed" value="true" />
+      <created>1730517220728</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1730517220728</updated>
+    </task>
+    <task id="LOCAL-00002" summary="eventos">
+      <option name="closed" value="true" />
+      <created>1730517230508</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1730517230508</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="eventos" />
+    <option name="LAST_COMMIT_MESSAGE" value="eventos" />
   </component>
 </project>
