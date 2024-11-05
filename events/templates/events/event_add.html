@@ -3,11 +3,57 @@
 {% block title %}Adicionar Evento{% endblock %}
 
 {% block content %}
-<h1>Adicionar Novo Evento</h1>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-</form>
-<a class="btn btn-success btn-lg" href="{% url 'event_add' %}">Salvar</a>
-<a class="btn btn-info btn-lg" href="{% url 'event_list' %}">Voltar</a>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-header">
+                    <h1>Adicionar Novo Evento</h1>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="id_name">Nome do Evento</label>
+                            {{ form.name }}
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-3">
+                                <label for="id_start_date">Data de Início</label>
+                                {{ form.start_date }}
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label for="id_start_time">Hora de Início</label>
+                                {{ form.start_time }}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-3">
+                                <label for="id_end_date">Data de Término</label>
+                                {{ form.end_date }}
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label for="id_end_time">Hora de Término</label>
+                                {{ form.end_time }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="id_description">Descrição</label>
+                            {{ form.description }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_location">Local</label>
+                            {{ form.location }}
+                        </div>
+                        <button type="submit" class="btn btn-success btn-lg">Salvar</button>
+                        <a class="btn btn-secondary btn-lg" href="{% url 'event_list' %}">Cancelar</a>
+                    </form>
+                </div>
+            </div>
+            <div class="mt-3">
+                <a class="btn btn-info btn-lg" href="{% url 'index' %}">Voltar para a Página Inicial</a>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

@@ -1,25 +1,60 @@
 {% extends 'base.html' %}
 
-{% block title %}Evento{% endblock %}
+{% block title %}Detalhes do Evento{% endblock %}
 
 {% block content %}
-<h1 class="mb-4">Detalhes do eventos: {{ event.name }}</h1>
-
-
-<table class="table">
-    <tr>
-        <th scope="col">Evento</th>
-        <th scope="col">Inicio</th>
-        <th scope="col">Final</th>
-        <th scope="col">Local</th>
-    </tr>
-    <tbody>
-    <td>{{ event.name }}</td>
-    <td>{{ event.start_date|date:"d/m/Y - H:i" }}{{ event.start_time|time:"H:i" }}</td>
-    <td>{{ event.end_date|date:"d/m/Y - H:i" }}{{ event.end_time|time:"H:i" }}</td>
-    <td>{{ event.location }}</td>
-    </tbody>
-</table>
-<div style="display: flex; justify-content: center">{{ event.description }}</div>
-<a class="btn btn-info btn-lg" href="{% url 'event_list' %}">Voltar</a>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-header">
+                    <h1>Detalhes do evento: {{ event.name }}</h1>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Nome do evento</th>
+                            <th scope="col">Início</th>
+                            <th scope="col">Final</th>
+                            <th scope="col">Local</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>{{ event.name }}</td>
+                            <td>{{ event.start_date|date:"d/m/y" }} {{ event.start_time|time:"H:i" }}</td>
+                            <td>{{ event.end_date|date:"d/m/y" }} {{ event.end_time|time:"H:i" }}</td>
+                            <td>{{ event.location }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="card mt-4">
+                        <div class="card-body">
+                            <h5 class="card-title">Descrição</h5>
+                            <p class="card-text">{{ event.description }}</p>
+                        </div>
+                    </div>
+                    <h2>Inscrição</h2>
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn btn-primary">Inscrever-se</button>
+                    </form>
+                    <h2 class="mt-4">Inscritos</h2>
+                    <ul class="list-group">
+                        {% for inscricao in inscricoes %}
+                        <li class="list-group-item">
+                            <strong>Nome:</strong> {{ inscricao.participant_name }}<br>
+                            <strong>E-mail:</strong> {{ inscricao.participant_email }}<br>
+                            <strong>Data de Inscrição:</strong> {{ inscricao.registration_date|date:"d/m/y H:i" }}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    <a class="btn btn-info btn-lg mt-3" href="{% url 'event_list' %}">Voltar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

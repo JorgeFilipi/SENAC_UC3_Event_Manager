@@ -18,7 +18,13 @@
         <tr>
             <td>{{ event.name }}</td>
             <td>{{ event.description }}</td>
-            <td><a class="btn btn-primary" href="{% url 'event_detail' event.id %}">Detalhes</a></td>
+            <td>
+                <a class="btn btn-primary" href="{% url 'event_detail' event.id %}">Detalhes</a>
+                <form method="post" action="{% url 'event_delete' event.id %}" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Excluir</button>
+                </form>
+            </td>
         </tr>
         {% endfor %}
     </tbody>

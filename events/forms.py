@@ -1,5 +1,5 @@
 from django import forms
-from .models import Event
+from .models import Event, Inscricao
 
 
 class EventForm(forms.ModelForm):
@@ -15,3 +15,21 @@ class EventForm(forms.ModelForm):
             'description': forms.Textarea(attrs={'class': 'form-control'}),
             'location': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Digite o local do evento'}),
         }
+
+
+class InscricaoForm(forms.ModelForm):
+    class Meta:
+        model = Inscricao
+        fields = ['participant_name', 'participant_email']
+        widgets = {
+            'participant_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Digite o seu nome'}),
+            'participant_email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Digite o seu e-mail'}),
+        }
+
+    @property
+    def clean_participant_email(self):
+        participant_email = self.cleaned_data.get('participant_email')
+        event = self.instance.event
+        if Inscricao.objects.filter(event=event, participant_name=participant_email).exists():
+            raise forms.ValidationError("Você já está inscrito neste evento com este e-mail.")
+        return participant_email
