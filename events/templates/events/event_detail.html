@@ -5,7 +5,6 @@
 {% block content %}
 <h1 class="mb-4">Detalhes do eventos: {{ event.name }}</h1>
 
-
 <table class="table">
     <tr>
         <th scope="col">Evento</th>
@@ -20,6 +19,8 @@
     <td>{{ event.location }}</td>
     </tbody>
 </table>
+<tbody>
 <div style="display: flex; justify-content: center">{{ event.description }}</div>
+</tbody>
 <a class="btn btn-info btn-lg" href="{% url 'event_list' %}">Voltar</a>
 {% endblock %}

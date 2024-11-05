@@ -7,7 +7,7 @@
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
+    <button type="submit" class="btn btn-success btn-lg" href="{% url 'event_list' %}">Salvar</button>
+    <button class="btn btn-info btn-lg" href="{% url 'index' %}">Voltar</button>
 </form>
-<a class="btn btn-success btn-lg" href="{% url 'event_add' %}">Salvar</a>
-<a class="btn btn-info btn-lg" href="{% url 'event_list' %}">Voltar</a>
 {% endblock %}

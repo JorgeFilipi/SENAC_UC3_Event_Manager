@@ -22,7 +22,10 @@ def event_add(request):
         form = EventForm(request.POST)
         if form.is_valid():
             form.save()
+            print("Formulário salvo com sucesso!")
             return redirect('event_list')
+        else:
+            print("Formulário inválido:", form.errors)
     else:
         form = EventForm()
     return render(request, 'events/event_add.html', {'form': form})
