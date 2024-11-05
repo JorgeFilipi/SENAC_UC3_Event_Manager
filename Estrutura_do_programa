@@ -5,18 +5,21 @@ event_manager/
 │   ├── urls.py
 │   └── wsgi.py
 ├── events/
+│   ├── migrations/
+│   │   └── __init__.py
 │   ├── templates/
-│       ├── events/
-│           ├── event_list.html
-│           ├── add_event.html
-│           ├── event_detail.html
-│           ├── base.html
-│           ├── index.html
+│   │   ├── events/
+│   │   │   ├── event_add.html
+│   │   │   ├── event_detail.html
+│   │   │   └── event_list.html
+│   │   ├── base.html
+│   │   └── index.html
 │   ├── __init__.py
 │   ├── admin.py
 │   ├── apps.py
-│   ├── models.py
-│   ├── views.py
 │   ├── forms.py
-│   └── urls.py
-├── manage.py
+│   ├── models.py
+│   ├── tests.py
+│   ├── urls.py
+│   └── views.py
+└── manage.py
