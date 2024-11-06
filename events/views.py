@@ -45,3 +45,9 @@ def event_delete(request, event_id):
         event.delete()
         return redirect('event_list')
     return render(request, 'events/event_delete.html', {'event': event})
+
+
+def inscrit_list(request, event_id):
+    event = get_object_or_404(Event, id=event_id)
+    inscricoes = Inscricao.objects.filter(event=event)
+    return render(request, 'events/inscricoes_list.html', {'inscricoes': inscricoes})

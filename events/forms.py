@@ -30,6 +30,6 @@ class InscricaoForm(forms.ModelForm):
     def clean_participant_email(self):
         participant_email = self.cleaned_data.get('participant_email')
         event = self.instance.event
-        if Inscricao.objects.filter(event=event, participant_name=participant_email).exists():
+        if Inscricao.objects.filter(event=event, participant_email=participant_email).exists():
             raise forms.ValidationError("Você já está inscrito neste evento com este e-mail.")
         return participant_email
