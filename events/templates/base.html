@@ -14,10 +14,13 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">Login</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{% url 'event_list' %}">Eventos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'event_add' %}">Adicionar Eventos</a>
+                    <a class="nav-link" href="{% url 'event_add' %}">Adicionar</a>
                 </li>
             </ul>
         </div>

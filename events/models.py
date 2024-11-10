@@ -24,3 +24,4 @@ class Inscricao(models.Model):
 
     def __str__(self):
         return f"Inscrição de {self.participant_name} para o eveto {self.event.name}"
+
