@@ -4,20 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d19c9ec7-9c1e-4f11-8a2a-e0dd50586b66" name="Changes" comment="Fase_03 inscritos">
-      <change afterPath="$PROJECT_DIR$/users/templates/registration/editar_usuario.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/users/templates/registration/logged_out.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/users/templates/registration/login.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/users/templates/registration/password_reset_complete.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/users/templates/registration/password_reset_confirm.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/users/templates/registration/password_reset_done.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/users/urls.py" afterDir="false" />
+    <list default="true" id="d19c9ec7-9c1e-4f11-8a2a-e0dd50586b66" name="Changes" comment="Fase_04">
+      <change afterPath="$PROJECT_DIR$/events/templates/events/event_delete_inscription.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/events/templates/events/event_edit_inscription.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Event_manager/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Event_manager/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Event_manager/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Event_manager/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/events/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/events/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/events/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/events/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/events/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/events/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/events/templates/events/event_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/events/templates/events/event_detail.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/events/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/events/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/events/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/events/views.py" afterDir="false" />
     </list>
@@ -29,15 +20,15 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="fase_03" />
+        <entry key="$PROJECT_DIR$" value="fase_04" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -69,7 +60,7 @@
   &quot;keyToString&quot;: {
     &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;fase__04&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;fase__05&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Projetos_Python/Event_manager&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -146,7 +137,8 @@
       <workItem from="1730692042517" duration="1555000" />
       <workItem from="1730926448989" duration="10095000" />
       <workItem from="1731101102855" duration="9120000" />
-      <workItem from="1731202452771" duration="1126000" />
+      <workItem from="1731202452771" duration="6009000" />
+      <workItem from="1731256235175" duration="2429000" />
     </task>
     <task id="LOCAL-00001" summary="eventos">
       <option name="closed" value="true" />
@@ -180,7 +172,15 @@
       <option name="project" value="LOCAL" />
       <updated>1730927320806</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Fase_04">
+      <option name="closed" value="true" />
+      <created>1731203886111</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1731203886111</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -201,6 +201,7 @@
     <MESSAGE value="eventos" />
     <MESSAGE value="Fase_03" />
     <MESSAGE value="Fase_03 inscritos" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fase_03 inscritos" />
+    <MESSAGE value="Fase_04" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fase_04" />
   </component>
 </project>

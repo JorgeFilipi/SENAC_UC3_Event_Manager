@@ -1,6 +1,5 @@
 from django.urls import path
-from django.contrib.auth import views as auth_views
-from . import views
+from events import views
 
 
 urlpatterns = [
@@ -10,4 +9,6 @@ urlpatterns = [
     path('event_add/', views.event_add, name='event_add'),
     path('event_delete/<int:event_id>/', views.event_delete, name='event_delete'),
     path('inscrit_list/<int:event_id>/', views.inscrit_list, name='inscrit_list'),
+    path('inscricao/editar/<int:id>/', views.editar_inscricao, name='event_edit_inscription'),
+    path('inscricao/delete/<int:id>/', views.delete_inscricao, name='event_delete_inscription'),
 ]

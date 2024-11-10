@@ -34,6 +34,7 @@
                             <h5 class="card-title">Descrição</h5>
                             <p class="card-text">{{ event.description }}</p>
                         </div>
+
                     </div>
                     <h2>Inscrição</h2>
                     <form method="post">
@@ -48,6 +49,8 @@
                             <strong>Nome:</strong> {{ inscricao.participant_name }}<br>
                             <strong>E-mail:</strong> {{ inscricao.participant_email }}<br>
                             <strong>Data de Inscrição:</strong> {{ inscricao.registration_date|date:"d/m/y H:i" }}
+                            <a href="{% url 'event_edit_inscription' inscricao.id %}" class="btn btn-info">Editar</a>
+                            <a href="{% url 'event_delete_inscription' inscricao.id %}" class="btn btn-danger">Deletar</a>
                         </li>
                         {% endfor %}
                     </ul>
@@ -58,3 +61,4 @@
     </div>
 </div>
 {% endblock %}
+

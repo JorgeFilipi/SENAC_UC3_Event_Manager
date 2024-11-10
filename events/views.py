@@ -66,3 +66,21 @@ def register_usuario(request):
         form = RegistroUsuario()
     return render(request, 'registration/register.html', {'form': form})
 
+def editar_inscricao(request, id):
+    inscricao = get_object_or_404(Inscricao, id=id)
+    if request.method == 'POST':
+        form = InscricaoForm(request.POST, instance=inscricao)
+        if form.is_valid():
+            form.save()
+            return redirect('event_detail', event_id=inscricao.event.id)
+    else:
+        form = InscricaoForm(instance=inscricao)
+
+    return render(request, 'events/event_edit_inscription.html', {'form': form, 'inscricao': inscricao})
+
+def delete_inscricao(request, id):
+    inscricao = get_object_or_404(Inscricao, id=id)
+    if request.method == 'POST':
+        inscricao.delete()
+        return redirect('event_detail', event_id=inscricao.event.id)
+    return render(request, 'events/event_delete_inscription.html', {'inscricao': inscricao})
