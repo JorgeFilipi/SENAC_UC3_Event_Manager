@@ -49,8 +49,10 @@
                             <strong>Nome:</strong> {{ inscricao.participant_name }}<br>
                             <strong>E-mail:</strong> {{ inscricao.participant_email }}<br>
                             <strong>Data de Inscrição:</strong> {{ inscricao.registration_date|date:"d/m/y H:i" }}
-                            <a href="{% url 'event_edit_inscription' inscricao.id %}" class="btn btn-info">Editar</a>
-                            <a href="{% url 'event_delete_inscription' inscricao.id %}" class="btn btn-danger">Deletar</a>
+                            <div style="padding: 10px">
+                                <a href="{% url 'event_edit_inscription' inscricao.id %}" class="btn btn-warning">Editar</a>
+                                <a href="{% url 'event_delete_inscription' inscricao.id %}" class="btn btn-danger">Deletar</a>
+                            </div>
                         </li>
                         {% endfor %}
                     </ul>

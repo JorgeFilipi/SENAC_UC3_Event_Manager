@@ -1,22 +1,25 @@
-event_manager/
-├── event_manager/
+meu_projeto/
+├── manage.py
+├── meu_projeto/
 │   ├── __init__.py
 │   ├── settings.py
 │   ├── urls.py
-│   └── wsgi.py
+│   ├── wsgi.py
 ├── events/
-│   ├── templates/
-│       ├── events/
-│           ├── event_list.html
-│           ├── add_event.html
-│           ├── event_detail.html
-│           ├── base.html
-│           ├── index.html
 │   ├── __init__.py
 │   ├── admin.py
 │   ├── apps.py
 │   ├── models.py
-│   ├── views.py
 │   ├── forms.py
-│   └── urls.py
-├── manage.py
+│   ├── views.py
+│   ├── urls.py
+│   └── templates/
+│       └── events/
+│           ├── event_list.html
+│           ├── event_detail.html
+│           ├── event_add.html
+│           ├── event_delete.html
+│           ├── inscricoes_list.html
+│           └── event_edit_inscription.html
+└── .env
+

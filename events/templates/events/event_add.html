@@ -45,8 +45,10 @@
                             <label for="id_location">Local</label>
                             {{ form.location }}
                         </div>
-                        <button type="submit" class="btn btn-success btn-lg">Salvar</button>
-                        <a class="btn btn-secondary btn-lg" href="{% url 'event_list' %}">Cancelar</a>
+                        <div style="padding: 10px">
+                            <button type="submit" class="btn btn-success btn-lg">Salvar</button>
+                            <a class="btn btn-secondary btn-lg" href="{% url 'event_list' %}">Cancelar</a>
+                        </div>
                     </form>
                 </div>
             </div>
