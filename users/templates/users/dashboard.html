@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load grupos_tags %}
+{% block content %}
+<div class="container-fluid">
+Olá, {{ user.username|default:"Visitante" }} e bem vindo ao Dashboard do usuário do <strong>Eventos Plus++</strong>
+{% if request.user.is_authenticated %}
+    <div class="container-fluid" style="display: flex; justify-content: flex-end"><a class="btn btn-primary btn-md" href="{% url 'editar_usuario' %}">Editar Usuário</a></div>
+{% endif %}
+
+</div>
+    <div class="container-fluid" style="padding-top: 20px">
+<h3>Inscrições em Eventos</h3>
+    </div>
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Nome do Evento</th>
+            <th scope="col">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for inscricoes in inscricao %}
+        <tr>
+            <td>>{{ inscricoes.nome_evento }}</td>
+            <td>
+                <form id="exluir-inscricao" method="post" action="{% url 'apagar_inscricao' inscricoes.id %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-link">Excluir</button>
+                </form>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td>Nenhum evento cadastrado.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+    {% if request.user|has_group:'Organizadores' %}
+
+<h3>Eventos Cadastrados</h3>
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Nome do Evento</th>
+            <th scope="col">Descrição</th>
+            <th scope="col">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for evento in eventos %}
+        <tr>
+            <td>>{{ evento.nome }}</td>
+            <td>{{ evento.descricao }}</td>
+            {% if request.user.is_authenticated %}
+            <td><a class="btn btn-primary btn-sm" href="{% url 'editar_evento' evento.id %}">Editar Evento</a> | <a class="btn btn-info btn-sm" href="{% url 'list_detalhes_eventos' evento.id %}">Ver Evento</a></td>
+            {% else %}
+             <td><a class="btn btn-primary btn-sm" href="{% url 'list_detalhes_eventos' evento.id %}">Ver Evento</a></td>
+            {% endif %}
+        </tr>
+        {% empty %}
+        <tr>
+            <td>Nenhum evento cadastrado.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+         <div><a class="btn btn-success" href="{% url 'inscricao_de_evento' %}"> Cadastrar novo evento</a></div>
+    {% endif %}
+    </div>
+{% endblock %}

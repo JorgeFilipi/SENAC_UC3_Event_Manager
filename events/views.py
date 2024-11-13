@@ -1,5 +1,8 @@
+from venv import logger
+
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 from django.core.mail import send_mail
 from django.shortcuts import render, get_object_or_404, redirect
 from .forms import EventForm, InscricaoForm, RegistroUsuario
@@ -19,7 +22,7 @@ def event_detail(request, event_id):
     event = get_object_or_404(Event, id=event_id)
     inscricoes = Inscricao.objects.filter(event=event)
     if request.method == 'POST':
-        form = InscricaoForm(request.POST)
+        form = InscricaoForm(request.POST, event=event)
         if form.is_valid():
             inscricao = form.save(commit=False)
             inscricao.event = event
@@ -28,6 +31,7 @@ def event_detail(request, event_id):
             mensagem = f'Você se inscreveu com sucesso no evento {event.name}.'
             enviar_email(inscricao.participant_email, assunto, mensagem)
             return redirect('event_detail', event_id=event.id)
+
     else:
         form = InscricaoForm()
 
@@ -53,13 +57,6 @@ def event_delete(request, event_id):
         event.delete()
         return redirect('event_list')
     return render(request, 'events/event_delete.html', {'event': event})
-
-
-@login_required
-def inscrit_list(request, event_id):
-    event = get_object_or_404(Event, id=event_id)
-    inscricoes = Inscricao.objects.filter(event=event)
-    return render(request, 'events/inscricoes_list.html', {'inscricoes': inscricoes, 'event': event})
 
 
 def register_usuario(request):
@@ -108,3 +105,10 @@ def enviar_email(destinatario, assunto, mensagem):
         [destinatario],
         fail_silently=False,
     )
+
+
+@login_required
+def inscrit_add(request, event_id):
+    event = get_object_or_404(Event, id=event_id)
+    inscricoes = Inscricao.objects.filter(event=event)
+    return render(request, 'events/inscrit_add.html', {'inscricoes': inscricoes})

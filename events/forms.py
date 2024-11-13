@@ -30,12 +30,15 @@ class InscricaoForm(forms.ModelForm):
                 attrs={'class': 'form-control', 'placeholder': 'Digite o seu e-mail'}),
         }
 
+    def __init__(self, *args, event=None, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.event = event
+
     def clean_participant_email(self):
-        participant_email = self.cleaned_data.get('participant_email')
-        event = self.instance.event
-        if Inscricao.objects.filter(event=event, participant_email=participant_email).exists():
-            raise forms.ValidationError("Você já está inscrito neste evento com este e-mail.")
-        return participant_email
+        participant_name = self.cleaned_data.get('participant_name')
+        if Inscricao.objects.filter(event=self.event, participant_name=participant_name).exists():
+            raise forms.ValidationError("Você já está inscrito neste evento com este nome.")
+        return self.cleaned_data.get('participant_email')
 
 
 class RegistroUsuario(UserCreationForm):

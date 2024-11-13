@@ -1,0 +1,26 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+ {% if form.errors %}
+    <p>Verifique o formulário, erros encontradso.</p>
+  {% endif %}
+
+  {% if next %}
+    {% if user.is_authenticated %}
+      <p>Sua conta não tem permissão de ver essa página.</p>
+    {% else %}
+      <p>Favor fazer login para ver essa página.</p>
+    {% endif %}
+  {% endif %}
+<h1>Formulário de Registro de Usuário</h1>
+    <h2>Para se inscrever em qualquer um dos nossos eventos você precisa estar registrado em nosso site.</h2>
+  <form method="post" action="{% url 'register' %}">
+    {% csrf_token %}
+      {{ form.as_p }}
+    <input type="submit" value="Confirmar" />
+    <input type="hidden" name="next" value="{{ next }}" />
+  </form>
+    <h3>Já tem um usuário? Clique <a href="{% url 'login' %}">aqui</a> para entrar</h3>
+
+{% endblock %}
