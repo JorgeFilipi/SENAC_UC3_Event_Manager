@@ -13,6 +13,7 @@
                 <div class="card-body">
                     <table class="table">
                         <thead>
+                        <thead class="thead-dark">
                         <tr>
                             <th scope="col">Nome do evento</th>
                             <th scope="col">Início</th>
@@ -34,28 +35,33 @@
                             <h5 class="card-title">Descrição</h5>
                             <p class="card-text">{{ event.description }}</p>
                         </div>
-
                     </div>
-                    <h2>Inscrição</h2>
-                    <form method="post">
-                        {% csrf_token %}
-                        {{ form.as_p }}
-                        <button type="submit" class="btn btn-primary">Inscrever-se</button>
-                    </form>
                     <h2 class="mt-4">Inscritos</h2>
-                    <ul class="list-group">
+                    <table class="table">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Nome do inscrito</th>
+                            <th scope="col">E-mail</th>
+                            <th scope="col">data da inscrição</th>
+                            <th scope="col">Ações</th>
+                        </tr>
+                        </thead>
+                        <tbody>
                         {% for inscricao in inscricoes %}
-                        <li class="list-group-item">
-                            <strong>Nome:</strong> {{ inscricao.participant_name }}<br>
-                            <strong>E-mail:</strong> {{ inscricao.participant_email }}<br>
-                            <strong>Data de Inscrição:</strong> {{ inscricao.registration_date|date:"d/m/y H:i" }}
-                            <div style="padding: 10px">
-                                <a href="{% url 'event_edit_inscription' inscricao.id %}" class="btn btn-warning">Editar</a>
+                        <tr>
+                            <td>{{ inscricao.participant_name }}</td>
+                            <td>{{ inscricao.participant_email }}</td>
+                            <td>{{ inscricao.registration_date|date:"d/m/y H:i" }}</td>
+                            <td>
+                                <a href="{% url 'event_edit_inscription' inscricao.id %}"
+                                   class="btn btn-warning">Editar</a>
                                 <a href="{% url 'event_delete_inscription' inscricao.id %}" class="btn btn-danger">Deletar</a>
-                            </div>
-                        </li>
+                                </form>
+                            </td>
+                        </tr>
                         {% endfor %}
-                    </ul>
+                    </table>
+                    <a href="{% url 'event_detail' event.id %}" class="btn btn-primary btn-lg mt-3">Inscrever-se</a>
                     <a class="btn btn-info btn-lg mt-3" href="{% url 'event_list' %}">Voltar</a>
                 </div>
             </div>
