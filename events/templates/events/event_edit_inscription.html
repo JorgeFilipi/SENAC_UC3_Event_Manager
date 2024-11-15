@@ -3,11 +3,14 @@
 {% block title %}Editar inscrição{% endblock %}
 
 {% block content %}
-<h1>Tem certeza de que deseja editar sua inscrição {{ event.name }}?</h1>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-success">Salvar</button>
-    <a href="{% url 'event_detail' inscricao.event.id %}" class="btn btn-danger">Cancelar</a>
-</form>
+<div class="content mt-5">
+    <h1>Editar Inscrção</h1>
+    <p>Tem certeza de que deseja editar sua inscrição {{ inscricao.participant_name }}{{ event.name }}?</p>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">Salvar</button>
+        <a href="{% url 'event_detail' inscricao.event.id %}" class="btn btn-danger">Cancelar</a>
+    </form>
+</div>
 {% endblock %}

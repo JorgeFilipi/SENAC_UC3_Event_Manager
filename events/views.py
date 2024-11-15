@@ -1,5 +1,8 @@
+from venv import logger
+
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 from django.core.mail import send_mail
 from django.shortcuts import render, get_object_or_404, redirect
 from .forms import EventForm, InscricaoForm, RegistroUsuario
@@ -73,9 +76,6 @@ def editar_inscricao(request, id):
         form = InscricaoForm(request.POST, instance=inscricao)
         if form.is_valid():
             form.save()
-            assunto = 'Confirmação de Atualização de Inscrição'
-            mensagem = f'Sua inscrição no evento {inscricao.event.name} foi atualizada com sucesso.'
-            enviar_email(inscricao.email, assunto, mensagem)
             return redirect('event_detail', event_id=inscricao.event.id)
     else:
         form = InscricaoForm(instance=inscricao)
@@ -86,10 +86,8 @@ def editar_inscricao(request, id):
 def delete_inscricao(request, id):
     inscricao = get_object_or_404(Inscricao, id=id)
     if request.method == 'POST':
+        inscricao.email = request.POST.get('email')
         inscricao.delete()
-        assunto = 'Confirmação de Cancelamento de Inscrição'
-        mensagem = f'Sua inscrição no evento {inscricao.event.name} foi cancelada com sucesso.'
-        enviar_email(inscricao.email, assunto, mensagem)
         return redirect('event_detail', event_id=inscricao.event.id)
     return render(request, 'events/event_delete_inscription.html', {'inscricao': inscricao})
 

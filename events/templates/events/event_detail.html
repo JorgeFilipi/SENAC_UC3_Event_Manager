@@ -5,7 +5,7 @@
 {% block content %}
 <div class="container mt-5">
     <div class="row">
-        <div class="col-md-8 offset-md-2">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
                     <h1>Detalhes do evento: {{ event.name }}</h1>
@@ -13,7 +13,6 @@
                 <div class="card-body">
                     <table class="table">
                         <thead>
-                        <thead class="thead-dark">
                         <tr>
                             <th scope="col">Nome do evento</th>
                             <th scope="col">Início</th>
@@ -30,19 +29,19 @@
                         </tr>
                         </tbody>
                     </table>
+                    <h3 class="card-title">Descrição do Evento</h3>
                     <div class="card mt-4">
                         <div class="card-body">
-                            <h5 class="card-title">Descrição</h5>
                             <p class="card-text">{{ event.description }}</p>
                         </div>
                     </div>
-                    <h2 class="mt-4">Inscritos</h2>
-                    <table class="table">
+                    <h3 class="mt-4">Inscritos</h3>
+                    <table class="table table-striped">
                         <thead class="thead-dark">
                         <tr>
-                            <th scope="col">Nome do inscrito</th>
+                            <th scope="col">Nome do Escrito</th>
                             <th scope="col">E-mail</th>
-                            <th scope="col">data da inscrição</th>
+                            <th scope="col">Data/Hora</th>
                             <th scope="col">Ações</th>
                         </tr>
                         </thead>
@@ -53,20 +52,25 @@
                             <td>{{ inscricao.participant_email }}</td>
                             <td>{{ inscricao.registration_date|date:"d/m/y H:i" }}</td>
                             <td>
-                                <a href="{% url 'event_edit_inscription' inscricao.id %}"
-                                   class="btn btn-warning">Editar</a>
-                                <a href="{% url 'event_delete_inscription' inscricao.id %}" class="btn btn-danger">Deletar</a>
-                                </form>
+                                <div>
+                                    <a href="{% url 'event_edit_inscription' inscricao.id %}" class="btn btn-warning">Editar</a>
+                                    <a href="{% url 'event_delete_inscription' inscricao.id %}" class="btn btn-danger">Deletar</a>
+                                </div>
                             </td>
                         </tr>
                         {% endfor %}
+                        </tbody>
                     </table>
-                    <a href="{% url 'event_detail' event.id %}" class="btn btn-primary btn-lg mt-3">Inscrever-se</a>
-                    <a class="btn btn-info btn-lg mt-3" href="{% url 'event_list' %}">Voltar</a>
+                    <h3>Inscrição</h3>
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn btn-primary btn-lg mt-3">Inscrever-se</button>
+                        <a class="btn btn-info btn-lg mt-3" href="{% url 'event_list' %}">Voltar</a>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
 {% endblock %}
-

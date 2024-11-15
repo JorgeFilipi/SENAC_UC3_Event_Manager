@@ -15,13 +15,10 @@ class Event(models.Model):
 
 
 class Inscricao(models.Model):
+    event = models.ForeignKey(Event, on_delete=models.CASCADE)
     participant_name = models.CharField(max_length=200)
     participant_email = models.EmailField()
     registration_date = models.DateTimeField(auto_now_add=True)
-    event = models.ForeignKey(Event, on_delete=models.CASCADE)
 
     class Meta:
         unique_together = ('event', 'participant_email')
-
-    def __str__(self):
-        return f"Inscrição de {self.participant_name} para o eveto {self.event.name}"

@@ -26,8 +26,7 @@ class InscricaoForm(forms.ModelForm):
         fields = ['participant_name', 'participant_email']
         widgets = {
             'participant_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Digite o seu nome'}),
-            'participant_email': forms.EmailInput(
-                attrs={'class': 'form-control', 'placeholder': 'Digite o seu e-mail'}),
+            'participant_email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Digite o seu e-mail'}),
         }
 
     def __init__(self, *args, event=None, **kwargs):
@@ -35,9 +34,9 @@ class InscricaoForm(forms.ModelForm):
         self.event = event
 
     def clean_participant_email(self):
-        participant_name = self.cleaned_data.get('participant_name')
-        if Inscricao.objects.filter(event=self.event, participant_name=participant_name).exists():
-            raise forms.ValidationError("Você já está inscrito neste evento com este nome.")
+        participant_email = self.cleaned_data.get('participant_email')
+        if Inscricao.objects.filter(event=self.event, participant_email=participant_email).exists():
+            raise forms.ValidationError("Você já está inscrito neste evento com este e-mail.")
         return self.cleaned_data.get('participant_email')
 
 

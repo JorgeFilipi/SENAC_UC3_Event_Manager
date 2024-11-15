@@ -11,16 +11,19 @@
                     <h1>Inscritos no evento: {{ event.name }}</h1>
                 </div>
                 <div class="card-body">
-                    <form method="post">
-                        {% csrf_token %}
-                        {{ form.as_p }}
-                        <button type="submit" class="btn btn-primary">Inscrever-se</button>
-                    </form>
-                    <a class="btn btn-info btn-lg mt-3" href="{% url 'inscrit_add' event.id %}">Voltar</a>
+                    <ul class="list-group">
+                        {% for inscricao in inscricoes %}
+                        <li class="list-group-item">
+                            <strong>Nome:</strong> {{ inscricao.participant_name }}<br>
+                            <strong>E-mail:</strong> {{ inscricao.participant_email }}<br>
+                            <strong>Data de Inscrição:</strong> {{ inscricao.registration_date|date:"d/m/y H:i" }}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    <a class="btn btn-info btn-lg mt-3" href="{% url 'event_list' %}">Voltar</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
 {% endblock %}
-
