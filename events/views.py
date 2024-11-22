@@ -2,10 +2,13 @@ from venv import logger
 
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
+from datetime import datetime
 from django.http import HttpResponse
 from django.core.mail import send_mail
 from django.shortcuts import render, get_object_or_404, redirect
-from .forms import EventForm, InscricaoForm, RegistroUsuario
+from django.contrib import messages
+
+from .forms import EventForm, RegistroUsuario
 from .models import Event, Inscricao
 
 
@@ -18,24 +21,29 @@ def event_list(request):
     return render(request, 'events/event_list.html', {'events': events})
 
 
-def event_detail(request, event_id):
+def event_detalhe(request, event_id):
     event = get_object_or_404(Event, id=event_id)
-    inscricoes = Inscricao.objects.filter(event=event)
+    inscricoes = Inscricao.objects.filter(event_id=event_id)
+    return render(request, 'events/event_detalhe.html', {'event': event, 'inscricoes': inscricoes})
+
+
+def inscrit_add(request, event_id):
+    event = get_object_or_404(Event, id=event_id)
+    if Inscricao.objects.filter(usuario=request.user, event=event).exists():
+        messages.error(request, 'Você já está inscrito neste evento.')
+        return redirect('event_detalhe', event_id)
+
     if request.method == 'POST':
-        form = InscricaoForm(request.POST, event=event)
-        if form.is_valid():
-            inscricao = form.save(commit=False)
-            inscricao.event = event
-            inscricao.save()
-            assunto = 'Confirmação de Inscrição no Evento'
-            mensagem = f'Você se inscreveu com sucesso no evento {event.name}.'
-            enviar_email(inscricao.participant_email, assunto, mensagem)
-            return redirect('event_detail', event_id=event.id)
+        inscricao = Inscricao.objects.create(
+            usuario=request.user,
+            event=event,
+            registration_date=datetime.now(),
+        )
+        inscricao.save()
+        messages.success(request, 'Inscrição realizada com sucesso!')
+        return redirect('event_detalhe', event.id)
 
-    else:
-        form = InscricaoForm()
-
-    return render(request, 'events/event_detail.html', {'event': event, 'form': form, 'inscricoes': inscricoes})
+    return render(request, 'events/inscrit_add.html', {'event': event})
 
 
 @login_required
@@ -70,25 +78,11 @@ def register_usuario(request):
     return render(request, 'registration/register.html', {'form': form})
 
 
-def editar_inscricao(request, id):
-    inscricao = get_object_or_404(Inscricao, id=id)
-    if request.method == 'POST':
-        form = InscricaoForm(request.POST, instance=inscricao)
-        if form.is_valid():
-            form.save()
-            return redirect('event_detail', event_id=inscricao.event.id)
-    else:
-        form = InscricaoForm(instance=inscricao)
-
-    return render(request, 'events/event_edit_inscription.html', {'form': form, 'inscricao': inscricao})
-
-
 def delete_inscricao(request, id):
     inscricao = get_object_or_404(Inscricao, id=id)
     if request.method == 'POST':
-        inscricao.email = request.POST.get('email')
         inscricao.delete()
-        return redirect('event_detail', event_id=inscricao.event.id)
+        return redirect('event_detalhe', event_id=inscricao.event.id)
     return render(request, 'events/event_delete_inscription.html', {'inscricao': inscricao})
 
 
@@ -100,10 +94,3 @@ def enviar_email(destinatario, assunto, mensagem):
         [destinatario],
         fail_silently=False,
     )
-
-
-@login_required
-def inscrit_add(request, event_id):
-    event = get_object_or_404(Event, id=event_id)
-    inscricoes = Inscricao.objects.filter(event=event)
-    return render(request, 'events/inscrit_add.html', {'inscricoes': inscricoes})

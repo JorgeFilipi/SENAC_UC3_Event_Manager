@@ -20,34 +20,38 @@ class EventForm(forms.ModelForm):
         }
 
 
-class InscricaoForm(forms.ModelForm):
-    class Meta:
-        model = Inscricao
-        fields = ['participant_name', 'participant_email']
-        widgets = {
-            'participant_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Digite o seu nome'}),
-            'participant_email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Digite o seu e-mail'}),
-        }
-
-    def __init__(self, *args, event=None, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.event = event
-
-    def clean_participant_email(self):
-        participant_email = self.cleaned_data.get('participant_email')
-        if Inscricao.objects.filter(event=self.event, participant_email=participant_email).exists():
-            raise forms.ValidationError("Você já está inscrito neste evento com este e-mail.")
-        return self.cleaned_data.get('participant_email')
+# class InscricaoForm(forms.ModelForm):
+#     class Meta:
+#         model = Inscricao
+#         fields = ['participant_name', 'participant_email']
+#         widgets = {
+#             'participant_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Digite o seu nome'}),
+#             'participant_email': forms.EmailInput(
+#                 attrs={'class': 'form-control', 'placeholder': 'Digite o seu e-mail'}),
+#         }
+#
+#     def __init__(self, *args, event=None, **kwargs):
+#         super().__init__(*args, **kwargs)
+#         self.event = event
+#
+#     def clean_participant_email(self):
+#         participant_email = self.cleaned_data.get('participant_email')
+#         if Inscricao.objects.filter(event=self.event, participant_email=participant_email).exists():
+#             raise forms.ValidationError("Você já está inscrito neste evento com este e-mail.")
+#         return self.cleaned_data.get('participant_email')
 
 
 class RegistroUsuario(UserCreationForm):
-    nome_completo = forms.CharField(max_length=160)
-    username = forms.CharField(max_length=100)
+    first_name = forms.CharField(label='Nome', max_length=30)
+    last_name = forms.CharField(label='Sobrenome', max_length=30)
+    username = forms.CharField(label='Usuário', max_length=100)
     email = forms.EmailField()
+    password1 = forms.CharField(label='Senha', widget=forms.PasswordInput)
+    password2 = forms.CharField(label='Confirme a Senha', widget=forms.PasswordInput)
 
     class Meta:
         model = User
-        fields = ['nome_completo', 'username', 'email', 'password1', 'password2']
+        fields = ['first_name', 'last_name', 'username', 'email', 'password1', 'password2']
 
     def clean_email(self):
         email = self.cleaned_data.get('email')
@@ -57,12 +61,11 @@ class RegistroUsuario(UserCreationForm):
 
 
 class EdicaoUsuario(forms.ModelForm):
-    nome_completo = forms.CharField(max_length=160)
     email = forms.EmailField()
 
     class Meta:
         model = User
-        fields = ['nome_completo', 'email']
+        fields = ['first_name', 'last_name', 'email']
 
     def clean_email(self):
         email = self.cleaned_data.get('email')

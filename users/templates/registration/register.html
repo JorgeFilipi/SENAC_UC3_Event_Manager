@@ -13,14 +13,38 @@
       <p>Favor fazer login para ver essa página.</p>
     {% endif %}
   {% endif %}
-<h1>Formulário de Registro de Usuário</h1>
-    <h2>Para se inscrever em qualquer um dos nossos eventos você precisa estar registrado em nosso site.</h2>
+    <div class="container" style="display: flex; flex-direction: column">
+<h1 class="display-2">Formulário de Registro de Usuário</h1>
+    <h4 class="display-6">Para se inscrever em qualquer um dos nossos eventos você precisa estar registrado em nosso site.</h4>
+<div class="mb-3" style="display: flex">
   <form method="post" action="{% url 'register' %}">
     {% csrf_token %}
-      {{ form.as_p }}
+      <table class="table table-striped">
+      <tr>
+        <td>Nome:</td>
+        <td>{{ form.first_name }}</td>
+       <td>Sobrenome:</td>
+        <td>{{ form.last_name }}</td>
+      </tr>
+      <tr>
+        <td>Usuário:</td>
+        <td>{{ form.username }}</td>
+        <td>Email:</td>
+        <td>{{ form.email }}</td>
+
+    </tr>
+      <tr>
+        <td>Senha:</td>
+        <td>{{ form.password1 }}</td>
+        <td>Confirme a Senha:</td>
+        <td>{{ form.password2 }}</td>
+      </tr>
+    </table>
     <input type="submit" value="Confirmar" />
     <input type="hidden" name="next" value="{{ next }}" />
   </form>
-    <h3>Já tem um usuário? Clique <a href="{% url 'login' %}">aqui</a> para entrar</h3>
+    </div>
+    </div>
+    <h6>Já tem um usuário? Clique <a href="{% url 'login' %}">aqui</a> para entrar</h6>
 
 {% endblock %}
