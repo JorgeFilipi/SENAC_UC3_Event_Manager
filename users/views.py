@@ -1,12 +1,9 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-
 from events.forms import EdicaoUsuario, RegistroUsuario
 from events.models import Inscricao, Event
-from events.views import event_detalhe
 
 
-# Create your views here.
 def dashboard(request):
     inscricao = Inscricao.objects.filter(usuario=request.user)
     eventos = Event.objects.filter(organizador=request.user)
@@ -14,7 +11,9 @@ def dashboard(request):
     lista_eventos = Event.objects.all()
     total_inscricoes = Inscricao.objects.filter(detalhes_evento__organizador=request.user).count()
 
-    return render(request, "users/dashboard.html", {'inscricao': inscricao, 'eventos': eventos, 'lista_inscricoes': lista_inscricoes, 'lista_eventos': lista_eventos, 'total_inscricoes': total_inscricoes})
+    return render(request, "users/dashboard.html",
+                  {'inscricao': inscricao, 'eventos': eventos, 'lista_inscricoes': lista_inscricoes,
+                   'lista_eventos': lista_eventos, 'total_inscricoes': total_inscricoes})
 
 
 @login_required

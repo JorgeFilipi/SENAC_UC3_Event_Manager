@@ -1,9 +1,6 @@
-from venv import logger
-
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
-from django.http import HttpResponse
 from django.core.mail import send_mail
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
